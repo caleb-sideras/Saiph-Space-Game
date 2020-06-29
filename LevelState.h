@@ -51,10 +51,6 @@ class LevelState : public AbstractState
 	//////////////////////
 
 	//////////////////////
-	// factory methods
-	// TODO Factory Method Lab: Place your method declarations for object creation here
-
-	//////////////////////
 	// private helper methods
 
 	// This method updates a ship's shields and/or armor values when delt damage and

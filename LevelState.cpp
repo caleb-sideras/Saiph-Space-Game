@@ -24,6 +24,12 @@
 
 namespace	// Global to this file only
 {
+	// TODO Factory Method Lab: Place your method definitions for object creation here
+
+
+
+
+
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
 	{
 		Effect *shieldEffect = SaiphApp::CloneEffectFromPrototype(_animationID);
@@ -49,8 +55,6 @@ namespace	// Global to this file only
 	}
 }	// end anonymous namespace
 
-// factory functions
-// TODO Factory Method Lab: Place your method definitions for object creation here
 
 // private helper methods
 Effect *LevelState::DealDamageToShip(Ship *_ship, float _damage, const Vec2f &_impactorPosition, unsigned int _animationID)
