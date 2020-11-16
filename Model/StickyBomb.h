@@ -11,7 +11,7 @@ class StickyBomb : public Bullet, public Observer
 	Vec2f offset;
 	bool stuck;
 
-	void Disconnect();
+	void Disappear();
 public:
 	StickyBomb();
 	~StickyBomb();
