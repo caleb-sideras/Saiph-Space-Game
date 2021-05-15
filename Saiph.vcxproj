@@ -179,8 +179,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseCommand.cpp" />
     <ClCompile Include="EntryState.cpp" />
     <ClCompile Include="ExitState.cpp" />
+    <ClCompile Include="HeadingCommand.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Model\BaseObject.cpp" />
     <ClCompile Include="Model\Boss.cpp" />
@@ -195,9 +197,11 @@
     <ClCompile Include="Model\Ship.cpp" />
     <ClCompile Include="Model\SpawnPoint.cpp" />
     <ClCompile Include="LevelState.cpp" />
+    <ClCompile Include="MotherShip.cpp" />
     <ClCompile Include="RandomFloat.cpp" />
     <ClCompile Include="SaiphApp.cpp" />
     <ClCompile Include="ShopState.cpp" />
+    <ClCompile Include="VelocityCommand.cpp" />
     <ClCompile Include="View\Layer.cpp" />
     <ClCompile Include="View\ViewManager.cpp" />
     <ClCompile Include="Main.cpp">
@@ -219,8 +223,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractState.h" />
+    <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="EntryState.h" />
     <ClInclude Include="ExitState.h" />
+    <ClInclude Include="HeadingCommand.h" />
     <ClInclude Include="Model\BaseObject.h" />
     <ClInclude Include="Model\Boss.h" />
     <ClInclude Include="Model\Bullet.h" />
@@ -232,8 +238,10 @@
     <ClInclude Include="Model\ProgressBar.h" />
     <ClInclude Include="Model\Ship.h" />
     <ClInclude Include="Model\SpawnPoint.h" />
+    <ClInclude Include="MotherShip.h" />
     <ClInclude Include="ShopState.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="VelocityCommand.h" />
     <ClInclude Include="View\Layer.h" />
     <ClInclude Include="View\ViewManager.h" />
     <ClInclude Include="LevelState.h" />
