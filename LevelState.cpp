@@ -61,6 +61,16 @@ namespace	// Global to this file only
 		return playerShip;
 	}
 
+	BaseObject* CreateBackground()
+	{
+		BaseObject* background = new BaseObject();
+		ViewManager::GetInstance().AddObject(background, 0);
+		background->SetTexture("Resources/images/background.png");
+		background->SetDimensions(1024, 1024);
+		background->SetPosition(512, 512);
+		return background;
+	}
+
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
 	{
 		Effect *shieldEffect = SaiphApp::CloneEffectFromPrototype(_animationID);
