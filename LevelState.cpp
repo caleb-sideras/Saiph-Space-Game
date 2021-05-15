@@ -36,7 +36,11 @@ namespace	// Global to this file only
 		return cursor;
 	}
 
-
+	HUD* CreateHud()
+	{
+		HUD* Hud = new HUD();
+		return Hud;
+	}
 
 
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
