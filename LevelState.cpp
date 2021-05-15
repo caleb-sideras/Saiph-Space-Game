@@ -81,6 +81,41 @@ namespace	// Global to this file only
 		return background;
 	}
 
+	PowerUp* CreatePowerUp()
+	{
+		PowerUp* powerup = new PowerUp();
+		ViewManager::GetInstance().AddObject(powerup, 2);
+
+		PowerUp* powerUp = new PowerUp();
+		int random = rand() % 4;
+		powerUp->SetType(random);
+		powerup->SetDimensions(32, 32);
+		powerUp->SetPosition(12.0f, 25.f);
+
+		if (powerup->GetType() == 0)
+		{
+			powerup->SCORE;
+			powerup->SetTexture("Resources/images/pupscore.png");
+		}
+		else if (powerup->GetType() == 1)
+		{
+			powerup->ENERGY;
+			powerup->SetTexture("Resources/images/pupenergy.png");
+		}
+		else if (powerup->GetType() == 2)
+		{
+			powerup->ARMOR;
+			powerup->SetTexture("Resources/images/puparmor.png");
+		}
+		else if (powerup->GetType() == 3)
+		{
+			powerup->WEAPON;
+			powerup->SetTexture("Resources/images/pupweapon.png");
+		}
+
+
+		return powerup;
+	}
 
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
 	{
