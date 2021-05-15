@@ -50,6 +50,16 @@ namespace	// Global to this file only
 		return enemyHealth;
 	}
 
+	Ship* CreatePlayerShip(unsigned int _shipID, float _shield, float _battery, float _x, float _y, float _energy)
+	{
+		Ship* playerShip = new Ship();
+		playerShip = SaiphApp::CloneShipFromPrototype(_shipID);
+		playerShip->SetShield(_shield);
+		playerShip->SetBattery(_battery);
+		playerShip->SetPosition(_x, _y);
+		playerShip->SetAfterburner(_energy);
+		return playerShip;
+	}
 
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
 	{
