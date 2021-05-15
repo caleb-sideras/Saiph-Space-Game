@@ -42,6 +42,14 @@ namespace	// Global to this file only
 		return Hud;
 	}
 
+	ProgressBar* CreateProgressBar(const std::string& _filename, float _width, float _height)
+	{
+		ProgressBar* enemyHealth = new ProgressBar();
+		enemyHealth->SetTexture(_filename);
+		enemyHealth->SetDimensions(_width, _height);
+		return enemyHealth;
+	}
+
 
 	Effect *StartShieldEffect(Ship *_ship, const Vec2f &_impactorPosition, unsigned int _animationID)
 	{
