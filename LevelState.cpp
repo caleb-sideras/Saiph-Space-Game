@@ -26,6 +26,15 @@ namespace	// Global to this file only
 {
 	// TODO Factory Method Lab: Place your method definitions for object creation here
 
+	BaseObject* CreateMouseCursor(const std::string& _filename, float _width, float _height, float _alpha, float _red, float _green, float _blue)
+	{
+		BaseObject* cursor = new BaseObject();
+		ViewManager::GetInstance().AddObject(cursor, 5);
+		cursor->SetTexture(_filename);
+		cursor->SetDimensions(_width, _height);
+		cursor->SetColor(_alpha, _red, _green, _blue);
+		return cursor;
+	}
 
 
 
