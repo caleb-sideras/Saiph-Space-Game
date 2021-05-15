@@ -71,16 +71,6 @@ namespace	// Global to this file only
 		return background;
 	}
 
-	BaseObject* CreateBackground()
-	{
-		BaseObject* background = new BaseObject();
-		ViewManager::GetInstance().AddObject(background, 0);
-		background->SetTexture("Resources/images/background.png");
-		background->SetDimensions(1024, 1024);
-		background->SetPosition(512, 512);
-		return background;
-	}
-
 	PowerUp* CreatePowerUp()
 	{
 		PowerUp* powerup = new PowerUp();
@@ -578,6 +568,31 @@ void LevelState::GeneratePowerUps(Enemy *_enemy)
 	{
 		// Use the following random velocity to set the velocity of the power up
 		Vec2f randomVelocity = SaiphApp::GetUnitVectorFromHeading(RandomFloat(0, 2 * PI).GenerateValue()) * POWER_UP_SPEED;
+
+		if (_enemy->ARMOR < 50)
+		{
+			PowerUp* Weapon = CreatePowerUp();
+			Weapon->SetType(3);
+			Weapon->SetVelocity(randomVelocity);
+		}
+		else if (_enemy->ARMOR == 0)
+		{
+			PowerUp* Armor = CreatePowerUp();
+			Armor->SetType(2);
+			Armor->SetVelocity(randomVelocity);
+		}
+		else if (_enemy->ENERGY == 0)
+		{
+			PowerUp* Energy = CreatePowerUp();
+			Energy->SetType(1);
+			Energy->SetVelocity(randomVelocity);
+		}
+		else if (_enemy->FLEE == true)
+		{
+			PowerUp* Score = CreatePowerUp();
+			Score->SetType(0);
+			Score->SetVelocity(randomVelocity);
+		}
 	}
 }
 void LevelState::ComputeHudInformation()
@@ -594,13 +609,13 @@ void LevelState::ComputeHudInformation()
 }
 void LevelState::ResetPlayer()
 {
-	if(playerShip)
+	if (playerShip)
 	{
 		ViewManager::GetInstance().RemoveObject(playerShip);
 		delete playerShip;
 	}
-	
-	if(hud)
+
+	if (hud)
 	{
 		hud->SetNumHits(0);
 		hud->SetNumMisses(0);
@@ -608,11 +623,7 @@ void LevelState::ResetPlayer()
 	}
 
 	// ship creation
-	playerShip = SaiphApp::CloneShipFromPrototype(SaiphApp::GetShipID());
-	playerShip->SetShield(SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
-	playerShip->SetBattery(SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery);
-	playerShip->SetPosition(BOUNDS_SIZE / 2.0f, BOUNDS_SIZE / 2.0f);
-	playerShip->SetAfterburner(SaiphApp::GetPropulsionFlyweight(SaiphApp::GetPropulsionID()).afterburnerEnergy);
+	playerShip = CreatePlayerShip(SaiphApp::GetShipID(), SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength, SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery, BOUNDS_SIZE / 2.0f, BOUNDS_SIZE / 2.0f, SaiphApp::GetPropulsionFlyweight(SaiphApp::GetPropulsionID()).afterburnerEnergy);
 }
 
 void LevelState::GarbageCollect()
@@ -775,22 +786,16 @@ void LevelState::Init()
 
 	// background
 	// TODO Factory Method Lab: Replace NULL with call to Factory method
-	background = NULL;
+	background = CreateBackground();
 
 	// hud
-	hud = new HUD();
+	hud = CreateHud();
 	
 	// progress bar
-	enemyHealth = new ProgressBar();
-	enemyHealth->SetTexture("Resources/images/progressBar2.png");
-	enemyHealth->SetDimensions(32.0f, 8.0f);
+	enemyHealth = CreateProgressBar("Resources/images/progressBar2.png", 32.0f, 8.0f);
 
 	// mouse
-	cursor = new BaseObject();
-	ViewManager::GetInstance().AddObject(cursor, 5);
-	cursor->SetTexture("Resources/images/reticle.png");
-	cursor->SetDimensions(32,32);
-	cursor->SetColor(0.74f,1,1,1);
+	cursor = CreateMouseCursor("Resources/images/reticle.png", 32, 32, 0.74f, 1, 1, 1);
 
 	// boss
 	boss = NULL;
