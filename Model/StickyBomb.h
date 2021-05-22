@@ -3,6 +3,7 @@
 
 #include "Bullet.h"
 #include "../Observer.h"
+#include "../Subject.h"
 class Enemy;
 
 class StickyBomb : public Bullet, public Observer
