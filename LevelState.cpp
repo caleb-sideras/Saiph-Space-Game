@@ -634,7 +634,16 @@ unsigned int LevelState::CheckForInput()
 
 	if(!gamePaused)
 	{
+		if (GetAsyncKeyState('C'))
+		{
 
+		}
+
+		if (GetAsyncKeyState('X'))
+		{
+			
+
+		}
 		// Ship movement
 		if(playerShip)
 		{
