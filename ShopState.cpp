@@ -672,7 +672,7 @@ void ShopState::Shutdown()
 	hud = NULL;
 
 	// shiptype data
-	for(std::map<int, Ship *>::iterator iter = shiptypes.begin(); iter == shiptypes.end();)
+	for(std::map<int, Ship *>::iterator iter = shiptypes.begin(); iter != shiptypes.end();)
 	{
 		ViewManager::GetInstance().RemoveObject(iter->second);
 		delete iter->second;
