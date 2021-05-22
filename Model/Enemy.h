@@ -4,6 +4,8 @@
 // Created April 17, 2008
 // Last updated September 18, 2008
 // 
+#include "../Subject.h"
+
 #ifndef ENEMY_H
 #define ENEMY_H
 

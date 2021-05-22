@@ -1,11 +1,11 @@
 #pragma once
-enum ObservedAction {
+enum ObserverEvent {
 	ACTIVATE,
 	SUBJECT_DEATH
 };
 class Observer
 {
 public:
-	virtual void Notification(ObservedAction ObserverEvent) = 0;
+	virtual void Notification(ObserverEvent observerEvent) = 0;
 
 };
