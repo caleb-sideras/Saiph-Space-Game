@@ -226,7 +226,7 @@ void ShopState::ComputeHudInformation()
 	if(playerShip)
 	{
 		hud->SetBarPercent(HUD::ENERGY, playerShip->GetBattery() / SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery);
-		hud->SetBarPercent(HUD::ENERGY, playerShip->GetShield() / SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
+		hud->SetBarPercent(HUD::SHIELD, playerShip->GetShield() / SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
 		hud->SetBarPercent(HUD::ARMOR, playerShip->GetArmor() / MAX_SHIP_ARMOR);
 		hud->SetBarPercent(HUD::AFTERBURNER, playerShip->GetAfterburner() / SaiphApp::GetPropulsionFlyweight(SaiphApp::GetPropulsionID()).afterburnerEnergy);
 	}
