@@ -647,8 +647,13 @@ unsigned int LevelState::CheckForInput()
 		}
 		if (GetAsyncKeyState('F'))
 		{
-			const char* strat1 = "DLL1";
+			const char* strat1 = "DLL";
 			playerShip->GetDeflector()->ActivateStrategy(strat1);
+		}
+		if (GetAsyncKeyState('G'))
+		{
+			const char* strat2 = "DLL2";
+			playerShip->GetDeflector()->ActivateStrategy(strat2);
 		}
 
 		// Ship movement

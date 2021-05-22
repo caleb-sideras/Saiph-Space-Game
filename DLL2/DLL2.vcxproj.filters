@@ -21,21 +21,21 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DLL.h">
+    <ClInclude Include="DLL2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Strategy1.h">
+    <ClInclude Include="Strategy2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DLL.cpp">
+    <ClCompile Include="DLL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Strategy1.cpp">
+    <ClCompile Include="Strategy2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
