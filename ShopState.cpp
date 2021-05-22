@@ -576,7 +576,7 @@ void ShopState::Init()
 	scroll.SelectItem(0);
 
 	// mouse
-	CreateMouseCursor();
+	cursor = CreateMouseCursor();
 
 	// hud
 	hud = CreateHud();
