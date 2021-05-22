@@ -29,7 +29,7 @@ void ExitState::Init()
 	ofs << "<Config>\n";
 	ofs << "  <Window fullscreen=\"" << ((SaiphApp::GetFullscreen()) ? "true" : "false") << "\" renderer=\""
 		<< ((SaiphApp::GetRenderer()) ? "directx" : "opengl") << "\"/>\n";
-	ofs << "  <StartData level=\"" << SaiphApp::GetLevel() << "\" score=\"" << SaiphApp::GetLevel()
+	ofs << "  <StartData level=\"" << SaiphApp::GetLevel() << "\" score=\"" << SaiphApp::GetScore()
 		<< "\" ship=\"" << SaiphApp::GetShipID() << "\" weapon=\"" << SaiphApp::GetWeaponID()
 		<< "\" weaponLevel=\"" << SaiphApp::GetWeaponLevel() << "\" generator=\"" << SaiphApp::GetGeneratorID()
 		<< "\" shield=\"" << SaiphApp::GetShieldID() << "\" propulsion=\"" << SaiphApp::GetPropulsionID()
