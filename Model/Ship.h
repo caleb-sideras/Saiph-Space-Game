@@ -8,6 +8,7 @@
 #define SHIP_H
 
 #include "MovingObject.h"
+#include "Deflector.h"
 
 #define MAX_ARMOR					200.0f
 
@@ -20,6 +21,7 @@ class Ship : public MovingObject
 	float	battery;		// Current energy reserves
 	float	lastFired;		// Time since last fired
 	float	afterburner;	// Energy left for afterburner power
+	Deflector* deflectorPtr = nullptr;
 
 public:
 	Ship();
@@ -33,6 +35,7 @@ public:
 	void SetBattery(float _battery);
 	void SetLastFired(float _time);
 	void SetAfterburner(float _energy);
+	void SetDeflector(Deflector* ShipDeflector);
 
 	// accessors
 	bool GetAfterburnerFlag() const;
@@ -42,9 +45,12 @@ public:
 	float GetBattery() const;
 	float GetLastFired() const;
 	float GetAfterburner() const;
+	Deflector* GetDeflector();
 
 	// interface methods
 	void Heartbeat(float _delta);
+	bool Collide(const BaseObject& _in) const;
+	bool Collide(Bullet* projectile) const;
 };
 
 #endif

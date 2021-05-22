@@ -1,5 +1,6 @@
 #include "precompiled_header"
 #include "../Model/Ship.h"
+#include "Bullet.h"
 
 Ship::Ship()
 {
@@ -34,6 +35,7 @@ void Ship::SetAfterburner(float _energy)
 	if(afterburner < 0)
 		afterburner = 0;
 }
+void Ship::SetDeflector(Deflector* deflector) {deflectorPtr = deflector;}
 
 // accessors
 bool Ship::GetAfterburnerFlag() const {return afterburnerFlag;}
@@ -43,10 +45,12 @@ float Ship::GetShield() const {return shield;}
 float Ship::GetBattery() const {return battery;}
 float Ship::GetLastFired() const {return lastFired;}
 float Ship::GetAfterburner() const {return afterburner;}
+Deflector* Ship::GetDeflector() { return deflectorPtr; }
 
 // interface methods
 void Ship::Heartbeat(float _delta)
 {
+	deflectorPtr->Heartbeat(_delta);
 	MovingObject::Heartbeat(_delta);
 
 	// bounds check
@@ -58,4 +62,23 @@ void Ship::Heartbeat(float _delta)
 		SetYPosition(0);
 	if(GetYPosition() > BOUNDS_SIZE)
 		SetYPosition(BOUNDS_SIZE);
+}
+
+bool Ship::Collide(const BaseObject& _in) const
+{
+	return BaseObject::Collide(_in);
+}
+
+bool Ship::Collide(Bullet* projectile) const
+{
+	if (deflectorPtr->GetActive())// deflectorPtr->GetActive()
+	{
+		deflectorPtr->Deflect(projectile);
+		return false;
+	}
+	else
+	{
+		return Ship::Collide(projectile);
+
+	}
 }
