@@ -271,8 +271,8 @@ void ShopState::GarbageCollect()
 		if(!bullets[loop]->GetActive())
 		{
 			ViewManager::GetInstance().RemoveObject(bullets[loop]);
-			bullets.erase(bullets.begin() + loop);
 			delete bullets[loop];
+			bullets.erase(bullets.begin() + loop);
 
 		}
 		else ++loop;
