@@ -63,7 +63,7 @@ unsigned int ExitState::Heartbeat(float _delta)
 	cursor->SetYPosition(float(mouse.y));
 
 	if((GetAsyncKeyState(VK_RETURN) & 0x1) || (GetAsyncKeyState(VK_LBUTTON) & 0x1))
-		transition = -1;
+		transition = NOCHANGE;
 	return transition;
 }
 
