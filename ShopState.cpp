@@ -334,7 +334,7 @@ unsigned int ShopState::PerformSelection(bool _menu)
 				if(alteredScore > 0 && selected->GetActionType() == MenuItem::NONE)
 				{
 					temp = atoi(selected->GetActionValue().c_str());
-					SaiphApp::SetWeaponID(0);
+					SaiphApp::SetWeaponID(temp / 100);
 					SaiphApp::SetWeaponLevel(temp % 100);
 					SaiphApp::SetScore((unsigned int)alteredScore);
 				}
