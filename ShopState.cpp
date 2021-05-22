@@ -42,7 +42,7 @@ BaseObject *ShopState::CreateMouseCursor()
 	BaseObject *cur = new BaseObject();
 	ViewManager::GetInstance().AddObject(cur, 5);
 	cur->SetTexture("Resources/images/reticle.png");
-	cur->SetDimensions(10000,10000);
+	cur->SetDimensions(32, 32);
 	menu.LinkCursor(cur);
 	ships.LinkCursor(cur);
 	weapons.LinkCursor(cur);
