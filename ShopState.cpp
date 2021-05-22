@@ -602,7 +602,7 @@ void ShopState::RenderFrame() const
 	sprintf(buffer, "Current Score: %.8d", SaiphApp::GetScore());
 	ViewManager::GetInstance().RenderText(50, 57, buffer);
 	sprintf(buffer, "With Selected: %.8d", alteredScore);
-	if(alteredScore = (int)SaiphApp::GetScore())
+	if(alteredScore == (int)SaiphApp::GetScore())
 		ViewManager::GetInstance().RenderText(50, 72, buffer);
 	else if(alteredScore < (int)SaiphApp::GetScore())
 		ViewManager::GetInstance().RenderText(50, 72, buffer, Color4f(1, 1, 0, 0));
