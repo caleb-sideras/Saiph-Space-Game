@@ -243,7 +243,7 @@ void ShopState::ResetPlayer()
 	}
 	playerShip = SaiphApp::CloneShipFromPrototype(SaiphApp::GetShipID());
 	playerShip->SetXPosition(50.0f);
-	playerShip->SetXPosition( WINDOW_HEIGHT / 2.0f);
+	playerShip->SetYPosition(WINDOW_HEIGHT / 2.0f);
 	playerShip->SetHeading(-PI /2.0f);
 	playerShip->SetShield(SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
 	playerShip->SetBattery(SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery);
