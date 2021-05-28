@@ -2,7 +2,8 @@
 #define STICKYBOMB_H_
 
 #include "Bullet.h"
-#include "Observer.h"
+#include "../Observer.h"
+#include "../Subject.h"
 class Enemy;
 
 class StickyBomb : public Bullet, public Observer
