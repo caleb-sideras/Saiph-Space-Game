@@ -1,6 +1,7 @@
 #include "precompiled_header"
 #include "Boss.h"
 #include "Ship.h"
+//#include "Behavior.cpp"
 
 #define SPAZ_TIME	1.0f
 #define SHOT_FREQ	0.05f
@@ -60,4 +61,47 @@ void Boss::Heartbeat(float _delta)
 		GetShip()->SetBattery(SaiphApp::GetGeneratorFlyweight(GetGeneratorID()).battery);
 
 	// TODO: insert your behavior algorithm code here
+
+		if (currentWaypoint >= waypoints.size())
+			currentWaypoint = 0;
+		if (GetFireFrequency() < 0)
+		{
+			Vec2f forward = GetTarget() - GetShip()->GetPosition();
+			forward.Normalize();
+			//l = SaiphApp::GetHeadingFromUnitVector(forward);
+			GetShip()->SetHeading(SaiphApp::GetHeadingFromUnitVector(forward));
+
+			Vec2f backward = waypoints[currentWaypoint] - GetShip()->GetPosition();
+			float distance = GetShip()->GetWidth() / 2;
+			if (backward * backward < distance * distance)
+			{
+				SetFireFrequency(1.0f);
+				currentWaypoint++;
+			}
+			backward.Normalize();
+			//k = SaiphApp::GetPropulsionFlyweight(GetPropulsionID());
+			//backward *= k.force;
+			backward *= SaiphApp::GetPropulsionFlyweight(GetPropulsionID()).force;
+			GetShip()->SetVelocity(backward);
+		}
+		else
+		{
+			float temp = GetFireFrequency();
+			SetFireFrequency(temp -= _delta);
+			GetShip()->SetHeading(RandomFloat(0, 2 * PI).GenerateValue());
+		}
+
+		GetShip()->Heartbeat(_delta);
+
+		//d = _delta
+		//h = GetShip()
+		//i = forward
+		//j = backward
+		//g = GetTarget()
+		//n = GetPropulsionID()
+		//f = distance
+		//l is removed
+		//k is removed
+
+
 }
