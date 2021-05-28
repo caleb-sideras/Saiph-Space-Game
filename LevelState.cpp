@@ -11,6 +11,7 @@
 #include "Model/Effect.h"
 #include "Model/Boss.h"
 #include "XML_Library/irrXML.h"
+#include "MotherShip.h"
 
 // Needed for rand()
 #include <stdlib.h>
@@ -801,7 +802,22 @@ void LevelState::Init()
 	boss = NULL;
 
 	// ship
-	playerShip = NULL;
+	//playerShip = NULL;
+	
+	Ship* deleteme = SaiphApp::CloneShipFromPrototype(SaiphApp::GetShipID());
+	MotherShip* player = new MotherShip(*deleteme);
+	ViewManager::GetInstance().RemoveObject(deleteme);
+	delete deleteme;
+	ViewManager::GetInstance().AddObject(player, 2);
+
+	for (size_t i = 0; i < 5; i++)
+	{
+		Ship* shipObj = SaiphApp::CloneShipFromPrototype(SaiphApp::GetShipID(), 0);
+		shipObj->SetColor(1, 1, 1, 1);
+		player->AddShadow(shipObj);
+
+	}
+
 	ResetPlayer();
 
 	// setup level
