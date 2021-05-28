@@ -65,6 +65,18 @@
     <ClCompile Include="Model\Boss.cpp">
       <Filter>Model</Filter>
     </ClCompile>
+    <ClCompile Include="Model\Behavior.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Deflector.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\LoadEnemyPrototypes.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\StickyBomb.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
     <ClCompile Include="BaseCommand.cpp" />
     <ClCompile Include="HeadingCommand.cpp" />
     <ClCompile Include="VelocityCommand.cpp" />
@@ -138,10 +150,18 @@
     </ClInclude>
     <ClInclude Include="ShopState.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="BaseCommand.h" />
-    <ClInclude Include="HeadingCommand.h" />
-    <ClInclude Include="VelocityCommand.h" />
-    <ClInclude Include="MotherShip.h" />
+    <ClInclude Include="Model\Deflector.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\IDeflectionStrategy.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Menu.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\StickyBomb.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="game.ico" />

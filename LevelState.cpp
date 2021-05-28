@@ -235,7 +235,7 @@ void LevelState::CheckCollision()
 	// Check collision for enemy bullets
 	for(loop=0;loop<enemyBullets.size();loop++)
 	{
-		if(enemyBullets[loop]->Collide(*playerShip))
+		if(playerShip->Collide(enemyBullets[loop]))
 		{
 			hud->SetTotalDamageReceived(hud->GetTotalDamageReceived() + enemyBullets[loop]->GetDamage());
 			effects.push_back(StartBulletEffect(enemyBullets[loop]));
@@ -733,6 +733,27 @@ unsigned int LevelState::CheckForInput()
 
 	if(!gamePaused)
 	{
+		if (GetAsyncKeyState('E'))
+		{
+			if (playerShip->GetDeflector()->GetActive() == false)
+			{
+				playerShip->GetDeflector()->SetActive(true);
+			}
+			else
+			{
+				playerShip->GetDeflector()->SetActive(false);
+			}
+		}
+		if (GetAsyncKeyState('F'))
+		{
+			const char* strat1 = "DLL";
+			playerShip->GetDeflector()->ActivateStrategy(strat1);
+		}
+		if (GetAsyncKeyState('G'))
+		{
+			const char* strat2 = "DLL2";
+			playerShip->GetDeflector()->ActivateStrategy(strat2);
+		}
 
 		// Ship movement
 		if(playerShip)

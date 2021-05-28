@@ -24,6 +24,7 @@ class Boss;
 
 class LevelState : public AbstractState
 {
+	friend class Deflector;
 	//////////////////////
 	// control variables
 	bool						win;				// level is won?
