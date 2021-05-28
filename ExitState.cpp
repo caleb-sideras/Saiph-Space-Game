@@ -29,7 +29,7 @@ void ExitState::Init()
 	ofs << "<Config>\n";
 	ofs << "  <Window fullscreen=\"" << ((SaiphApp::GetFullscreen()) ? "true" : "false") << "\" renderer=\""
 		<< ((SaiphApp::GetRenderer()) ? "directx" : "opengl") << "\"/>\n";
-	ofs << "  <StartData level=\"" << SaiphApp::GetLevel() << "\" score=\"" << SaiphApp::GetLevel()
+	ofs << "  <StartData level=\"" << SaiphApp::GetLevel() << "\" score=\"" << SaiphApp::GetScore()
 		<< "\" ship=\"" << SaiphApp::GetShipID() << "\" weapon=\"" << SaiphApp::GetWeaponID()
 		<< "\" weaponLevel=\"" << SaiphApp::GetWeaponLevel() << "\" generator=\"" << SaiphApp::GetGeneratorID()
 		<< "\" shield=\"" << SaiphApp::GetShieldID() << "\" propulsion=\"" << SaiphApp::GetPropulsionID()
@@ -63,7 +63,7 @@ unsigned int ExitState::Heartbeat(float _delta)
 	cursor->SetYPosition(float(mouse.y));
 
 	if((GetAsyncKeyState(VK_RETURN) & 0x1) || (GetAsyncKeyState(VK_LBUTTON) & 0x1))
-		transition = -1;
+		transition = NOCHANGE;
 	return transition;
 }
 

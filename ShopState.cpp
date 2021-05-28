@@ -42,7 +42,7 @@ BaseObject *ShopState::CreateMouseCursor()
 	BaseObject *cur = new BaseObject();
 	ViewManager::GetInstance().AddObject(cur, 5);
 	cur->SetTexture("Resources/images/reticle.png");
-	cur->SetDimensions(10000,10000);
+	cur->SetDimensions(32, 32);
 	menu.LinkCursor(cur);
 	ships.LinkCursor(cur);
 	weapons.LinkCursor(cur);
@@ -226,7 +226,7 @@ void ShopState::ComputeHudInformation()
 	if(playerShip)
 	{
 		hud->SetBarPercent(HUD::ENERGY, playerShip->GetBattery() / SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery);
-		hud->SetBarPercent(HUD::ENERGY, playerShip->GetShield() / SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
+		hud->SetBarPercent(HUD::SHIELD, playerShip->GetShield() / SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
 		hud->SetBarPercent(HUD::ARMOR, playerShip->GetArmor() / MAX_SHIP_ARMOR);
 		hud->SetBarPercent(HUD::AFTERBURNER, playerShip->GetAfterburner() / SaiphApp::GetPropulsionFlyweight(SaiphApp::GetPropulsionID()).afterburnerEnergy);
 	}
@@ -243,7 +243,7 @@ void ShopState::ResetPlayer()
 	}
 	playerShip = SaiphApp::CloneShipFromPrototype(SaiphApp::GetShipID());
 	playerShip->SetXPosition(50.0f);
-	playerShip->SetXPosition( WINDOW_HEIGHT / 2.0f);
+	playerShip->SetYPosition(WINDOW_HEIGHT / 2.0f);
 	playerShip->SetHeading(-PI /2.0f);
 	playerShip->SetShield(SaiphApp::GetShieldFlyweight(SaiphApp::GetShieldID()).strength);
 	playerShip->SetBattery(SaiphApp::GetGeneratorFlyweight(SaiphApp::GetGeneratorID()).battery);
@@ -271,8 +271,8 @@ void ShopState::GarbageCollect()
 		if(!bullets[loop]->GetActive())
 		{
 			ViewManager::GetInstance().RemoveObject(bullets[loop]);
-			bullets.erase(bullets.begin() + loop);
 			delete bullets[loop];
+			bullets.erase(bullets.begin() + loop);
 
 		}
 		else ++loop;
@@ -334,7 +334,7 @@ unsigned int ShopState::PerformSelection(bool _menu)
 				if(alteredScore > 0 && selected->GetActionType() == MenuItem::NONE)
 				{
 					temp = atoi(selected->GetActionValue().c_str());
-					SaiphApp::SetWeaponID(0);
+					SaiphApp::SetWeaponID(temp / 100);
 					SaiphApp::SetWeaponLevel(temp % 100);
 					SaiphApp::SetScore((unsigned int)alteredScore);
 				}
@@ -576,7 +576,7 @@ void ShopState::Init()
 	scroll.SelectItem(0);
 
 	// mouse
-	CreateMouseCursor();
+	cursor = CreateMouseCursor();
 
 	// hud
 	hud = CreateHud();
@@ -602,7 +602,7 @@ void ShopState::RenderFrame() const
 	sprintf(buffer, "Current Score: %.8d", SaiphApp::GetScore());
 	ViewManager::GetInstance().RenderText(50, 57, buffer);
 	sprintf(buffer, "With Selected: %.8d", alteredScore);
-	if(alteredScore = (int)SaiphApp::GetScore())
+	if(alteredScore == (int)SaiphApp::GetScore())
 		ViewManager::GetInstance().RenderText(50, 72, buffer);
 	else if(alteredScore < (int)SaiphApp::GetScore())
 		ViewManager::GetInstance().RenderText(50, 72, buffer, Color4f(1, 1, 0, 0));
@@ -672,7 +672,7 @@ void ShopState::Shutdown()
 	hud = NULL;
 
 	// shiptype data
-	for(std::map<int, Ship *>::iterator iter = shiptypes.begin(); iter == shiptypes.end();)
+	for(std::map<int, Ship *>::iterator iter = shiptypes.begin(); iter != shiptypes.end();)
 	{
 		ViewManager::GetInstance().RemoveObject(iter->second);
 		delete iter->second;
