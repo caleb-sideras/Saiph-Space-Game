@@ -1,0 +1,8 @@
+<Level>
+  <Spawn x="500" y="500" wait="1000" interval="1" enemy="4" amount="1"/>
+  <Boss/>
+  <Waypoint random="true"/>
+  <Waypoint random="true"/>
+  <Waypoint random="true"/>
+  <Waypoint x="500" y="500"/>
+</Level>

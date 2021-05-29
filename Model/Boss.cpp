@@ -68,14 +68,14 @@ void Boss::Heartbeat(float _delta)
 		{
 			Vec2f forward = GetTarget() - GetShip()->GetPosition();
 			forward.Normalize();
-			//l = SaiphApp::GetHeadingFromUnitVector(forward);
-			GetShip()->SetHeading(SaiphApp::GetHeadingFromUnitVector(forward));
+			float heading = SaiphApp::GetHeadingFromUnitVector(forward);
+			GetShip()->SetHeading(heading);
 
 			Vec2f backward = waypoints[currentWaypoint] - GetShip()->GetPosition();
 			float distance = GetShip()->GetWidth() / 2;
 			if (backward * backward < distance * distance)
 			{
-				SetFireFrequency(1.0f);
+				SetFireFrequency(SHOT_FREQ);
 				currentWaypoint++;
 			}
 			backward.Normalize();
@@ -86,22 +86,11 @@ void Boss::Heartbeat(float _delta)
 		}
 		else
 		{
-			float temp = GetFireFrequency();
-			SetFireFrequency(temp -= _delta);
+			SetFireFrequency(SHOT_FREQ);
+			//float temp = GetFireFrequency();
+			//SetFireFrequency(temp -= _delta);
 			GetShip()->SetHeading(RandomFloat(0, 2 * PI).GenerateValue());
 		}
 
 		GetShip()->Heartbeat(_delta);
-
-		//d = _delta
-		//h = GetShip()
-		//i = forward
-		//j = backward
-		//g = GetTarget()
-		//n = GetPropulsionID()
-		//f = distance
-		//l is removed
-		//k is removed
-
-
 }
